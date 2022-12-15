@@ -1,0 +1,5 @@
+USE Lib 
+CREATE TABLE Debtors (
+DebtorId INT PRIMARY KEY IDENTITY (1, 1),
+DebtorName NVARCHAR (30) NOT NULL,
+)

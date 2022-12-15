@@ -1,0 +1,6 @@
+USE Lib 
+CREATE TABLE Books (
+BookID INT NOT NULL PRIMARY KEY IDENTITY (1, 1),
+BookName NVARCHAR (30) NOT NULL,
+AuthorBookId INT 
+CONSTRAINT FK_Books_To_Authors FOREIGN KEY (AuthorBookId)  REFERENCES Authors (AuthorId))
