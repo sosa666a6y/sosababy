@@ -2,6 +2,7 @@ from cProfile import label
 from tkinter import *
 from tracemalloc import start
 import math
+
 #Настроим окно будущего граф. интерфейса
 root = Tk()
 root.title('Решение квадратных уравнений')
@@ -25,6 +26,9 @@ c = Entry()
 c.place (x=225, y=250, width=50 ,height=40)
 text5 = Label(text='c =')
 text5.place (x = 200, y = 260)
+
+
+
 #Логика нажатия на кнопку "Решить"
 def solve():
     x=float()
@@ -35,19 +39,55 @@ def solve():
     c_val=float(c.get())
     D = b_val*b_val-4*a_val*c_val
     if D < 0:
+        f = open ('UserData1.txt', 'w')
+        f.write('a = ')
+        f.write(str(a.get()))
+        f.write('\nb = ')
+        f.write(str(b.get()))
+        f.write('\nc = ')
+        f.write(str(c.get()))
+        output2.delete (0, END)
         output1.delete (0, END)
         output1.insert(0,'D < 0, Уравнение не имеет корней')
+        f.write('\nКорней уравнения нет, так как дискриминант меньше 0')
+        f.close()
+       
+
     elif D == 0:
+        f = open ('UserData1.txt', 'w')
+        f.write('a = ')
+        f.write(str(a.get()))
+        f.write('\nb = ')
+        f.write(str(b.get()))
+        f.write('\nc = ')
+        f.write(str(c.get()))
         x = -b_val/(2*a_val)
+        output2.delete (0, END)
         output1.delete (0, END)
         output1.insert(0, x)
+        f.write("\nКорень уравнения только один: ")
+        f.write (str(x))
+        f.close()
     elif D > 0:
+        f = open ('UserData1.txt', 'w')
+        f.write('a = ')
+        f.write(str(a.get()))
+        f.write('\nb = ')
+        f.write(str(b.get()))
+        f.write('\nc = ')
+        f.write(str(c.get()))
         x1 = (-b_val + math.sqrt(D))/(a_val*2)
         x2 = (-b_val - math.sqrt(D))/(a_val*2)
         output1.delete (0, END)
         output2.delete (0, END)
         output1.insert(0, x1)
         output2.insert(0, x2)
+        f.write("\nКорни уравнения равны: x1 = ")
+        f.write (str(x1) )
+        f.write('\tx2 = ')
+        f.write(str(x2))
+        f.close()
+    
 #Кнопка "Решить"
 button=Button(text = "Решить", command = solve)
 button.place(x=225, y=300)
